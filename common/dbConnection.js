@@ -2,7 +2,7 @@ const configure = require("../configure");
 const config = require("../configure");
 const { Sequelize } = require("sequelize");
 
-var database = new Sequelize(configure.db);
+var database = new Sequelize(config.db);
 database
   .authenticate()
   .then(() => {

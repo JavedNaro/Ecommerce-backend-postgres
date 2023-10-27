@@ -1,4 +1,4 @@
-const { models } = require("../models");
+const { models } = require("../models/Index");
 
 module.exports = {
   getUsers: async () => {
@@ -21,6 +21,7 @@ module.exports = {
       email: data.email,
       phoneNumber: data.phoneNumber,
     });
+    console.log(result);
     // default cart while creating user
     const cart = await models.cart.create({ userID: result.id });
     result.setCart(cart);

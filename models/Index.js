@@ -1,15 +1,9 @@
 let sequelize = require("../common/dbConnection");
-let cart = require("./definations/cart");
-let category = require("./definations/category");
-const order = require("./definations/order");
-let product = require("./definations/product");
-let user = require("./definations/user");
-
-// user
-// category
-// product
-// cart
-// order
+let cart = require("./definitions/cart");
+let category = require("./definitions/category");
+const order = require("./definitions/order");
+let product = require("./definitions/product");
+let user = require("./definitions/user");
 
 // O-O btw user & cart
 user.hasOne(cart, {
@@ -25,14 +19,14 @@ cart.belongsTo(user, {
 user.belongsToMany(product, {
   onDelete: "CASCADE",
   through: "UserProduct",
-  as: "Product",
+  // as: "Product",
   foreignKey: { name: "userID", allowNull: false },
 });
 
 product.belongsToMany(user, {
   onDelete: "CASCADE",
   through: "UserProduct",
-  as: " User",
+  // as: " User",
   foreignKey: { name: "productID", allowNull: false },
 });
 
@@ -49,14 +43,14 @@ order.belongsTo(user, {
 product.belongsToMany(category, {
   onDelete: "CASCADE",
   through: "ProductCategory",
-  as: "Category",
+  // as: "Category",
   foreignKey: { name: "productID", allowNull: false },
 });
 
 category.belongsToMany(product, {
   onDelete: "CASCADE",
   through: "ProductCategory",
-  as: " Product",
+  // as: " Product",
   foreignKey: { name: "categoryID", allowNull: false },
 });
 
@@ -64,14 +58,14 @@ category.belongsToMany(product, {
 product.belongsToMany(cart, {
   onDelete: "CASCADE",
   through: "ProductCart",
-  as: "Cart",
+  // as: "Cart",
   foreignKey: { name: "productID", allowNull: false },
 });
 
 cart.belongsToMany(product, {
   onDelete: "CASCADE",
   through: "ProductCart",
-  as: "Product",
+  // as: "Product",
   foreignKey: { name: "cartID", allowNull: false },
 });
 
